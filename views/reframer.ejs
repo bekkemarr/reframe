@@ -1,0 +1,24 @@
+<%- include('partials/header') -%>
+
+    <h1>Reframer</h1>
+    <ul>
+    <% reframer.forEach( el => { %>
+            <li class='reframerItem' data-id='<%=el._id%>'>
+                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.reframer %></span>
+                <span class='del'> Delete </span>
+            </li>
+    <% }) %>    
+    </ul>
+
+    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+
+    <form action="/reframer/createReframer" method='POST'>
+        <input type="text" placeholder="Enter Reframing Item" name='reframerItem'>
+        <input type="submit">
+    </form>
+
+    <a href="/logout">Logout</a>
+
+    <script src="js/main.js"></script>
+
+<%- include('partials/footer') -%>
