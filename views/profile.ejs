@@ -3,10 +3,22 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
+              
+          </div>
+
+          <div class="card w-96 bg-base-100 shadow-xl">
+            <div class="card-body">
+              <div class="card-actions justify-end">
+                <button class="btn btn-square btn-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+              </div>
               <p><strong>User Name</strong>: <%= user.userName %></p>
               <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+              <a href="/logout">Logout</a>
+            </div>
           </div>
+
           <div class="mt-5">
             <h2>Add a post</h2>
             <form action="/post/createPost" enctype="multipart/form-data" method="POST">
