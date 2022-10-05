@@ -1,58 +1,82 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
-          <div>
-              
-          </div>
+<main>
+  <div class="container mx-auto">
+    <div class="row mt-5">
+        <div class="col-6">
 
-          <div class="card w-96 bg-base-100 shadow-xl">
-            <div class="card-body">
-              <div class="card-actions justify-end">
-                <button class="btn btn-square btn-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                </button>
+            <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+              <div class="card-body">
+                <h3 class="card-title mx-auto">Profile</h3>
+                <p><strong>User Name</strong>: <%= user.userName %></p>
+                <p><strong>Email</strong>: <%= user.email %></p>
+                <!-- To do: Create edit functionality -->
+                <div class="card-actions">
+                  <a href="#" class="mx-auto">
+                    <div class="btn btn-active btn-secondary my-4">Edit</div></a>
+                  <a href="/logout" class="mx-auto">
+                    <div class="btn btn-active btn-accent my-4">Logout</div></a>
+                </div>
               </div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout">Logout</a>
             </div>
-          </div>
 
-          <div class="mt-5">
-            <h2>Add a post</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
+
+
+
+            <div class="card w-96 bg-primary text-primary-content mx-auto my-4">
+              <div class="card-body">
+                <h2 class="card-title">Add a post</h2>
+                <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+                  <div class="mb-3">
+                      <label for="title" class="form-label">Title</label>
+                      <input type="text" class="form-control text-secondary-content w-full input" id="title" name="title">
+                  </div>
+                  <div class="mb-3">
+                    <label for="caption" class="form-label">Caption</label>
+                    <textarea class="form-control text-secondary-content textarea w-full resize-none" id="caption" name="caption"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label for="imgUpload" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="imageUpload" name="file">
+                  </div>
+                  <button type="submit" class="btn btn-active btn-secondary hover:bg-secondary" value="Upload">Submit</button>
+                </form>
               </div>
-              <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
-          </div>
-      </div>
-      <div class="col-6">
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+            </div>
+
+
+
+
+
+        <h3 class="text-3xl font-bold mx-auto">Post History</h3>
+          <ul class="flex">
+            <% for(var i=0; i<posts.length; i++) {%>
+              <li class="overflow-hidden">
+                <div class="card card-body lg:card-side bg-base-100 shadow-xl w-1/2 mx-auto my-4">
+                  <img src="<%= posts[i].image%>" class="h-48">
+                  
+                  
+                  <div class="card-body">
+                    <h2 class="card-title"><%= posts[i].title%></h2>
+                    <p><%= posts[i].caption%></p>
+                    <div class="card-actions justify-end">
+                      <a href="/post/<%= posts[i]._id%>">
+                        <button class="btn btn-primary">See more...</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            <% } %>
+          </ul>
+
+          <div class="row justify-content-center mt-5">
+            <a class="btn btn-primary my-4" href="/feed">Return to Feed</a>
+          </div>  
+
         </div>  
-      </div>  
+
+      </div>
     </div>
   </div>
-</div>
+</main>
 <%- include('partials/footer') -%>
