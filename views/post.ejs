@@ -1,15 +1,8 @@
 <%- include('partials/header') -%>
 <!-- centre -->
 <div class="container mx-auto"> 
-  
   <div class="row justify-content-center mt-5 mx-auto">
     <div class="col-6 mx-auto">
-
-
-
-
-
-
       <div>
         <ul>
             <li class="overflow-hidden">
@@ -59,7 +52,6 @@
       </div>
 
     <!-- Add comment -->
-
     <div class="mx-auto">
       <form action="/comment/createComment/<%= post.id %>" method="POST" class="mx-auto">
         <div class="mx-auto mt-4 mb-4">
@@ -118,7 +110,6 @@
         <% } %>
       </ul>
     </div>
-  
     <div class="col-6 mt-5 mb-5 mx-auto">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
       <a class="btn btn-primary" href="/feed">Return to Feed</a>
