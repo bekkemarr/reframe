@@ -36,14 +36,19 @@ module.exports = {
   },
   createPost: async (req, res) => {
     try {
+      let result = {};
+      //Check if there is an image
+      if (req.file !== undefined){
+        result = await cloudinary.uploader.upload(req.file.path);
+      }
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
-
       await Post.create({
         title: req.body.title,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
+        negativeTitle: req.body.negativeTitle,
+        image: result.secure_url,    //why does this work when there isn't an image??
+        cloudinaryId: result.public_id, //maybe the create function assumes a null value should be empty and can continue? because it's not required in the schema??? 
         caption: req.body.caption,
+        negativeCaption: req.body.negativeCaption,
         likes: 0,
         user: req.user.id,
       });
@@ -71,8 +76,12 @@ module.exports = {
     try {
       // Find post by id
       let post = await Post.findById({ _id: req.params.id });
-      // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
+
+      //See if post has an image, and if so delete
+      if (post.cloudinaryId !== undefined){
+        await cloudinary.uploader.destroy(post.cloudinaryId);
+      }
+
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");

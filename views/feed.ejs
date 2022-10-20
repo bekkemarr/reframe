@@ -5,8 +5,10 @@
     <% for(var i=0; i<posts.length; i++) {%>
       <li class="overflow-hidden">
         <div class="card card-body lg:card-side bg-base-100 shadow-xl w-1/2 mx-auto my-4">
-          <img src="<%= posts[i].image%>" class="h-48">
           
+          <% if (posts[i].image !== undefined) { %>
+            <img src="<%= posts[i].image%>" class="h-48">
+          <% } %>
           
           <div class="card-body">
             <h2 class="card-title"><%= posts[i].title%></h2>

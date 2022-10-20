@@ -20,20 +20,36 @@
             </div>
 
 
-
-
+            
             <div class="card w-96 bg-primary text-primary-content mx-auto my-4">
               <div class="card-body">
                 <h2 class="card-title">Add a post</h2>
                 <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-                  <div class="mb-3">
-                      <label for="title" class="form-label">Title</label>
-                      <input type="text" class="form-control text-secondary-content w-full input" id="title" name="title">
+                  
+                  <!-- Negative Title and Caption -->
+                  <div> 
+                    <div class="mb-3">
+                        <label for="negativeTitle" class="form-label">Negative Title</label>
+                        <input type="text" class="form-control text-secondary-content w-full input" id="negativeTitle" name="negativeTitle">
+                    </div>
+                    <div class="mb-3">
+                      <label for="negativeCaption" class="form-label">Negative Caption</label>
+                      <textarea class="form-control text-secondary-content textarea w-full resize-none" id="negativeCaption" name="negativeCaption"></textarea>
+                    </div>
                   </div>
-                  <div class="mb-3">
-                    <label for="caption" class="form-label">Caption</label>
-                    <textarea class="form-control text-secondary-content textarea w-full resize-none" id="caption" name="caption"></textarea>
+
+                  <!-- Title and Caption -->
+                  <div> 
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control text-secondary-content w-full input" id="title" name="title">
+                    </div>
+                    <div class="mb-3">
+                      <label for="caption" class="form-label">Caption</label>
+                      <textarea class="form-control text-secondary-content textarea w-full resize-none" id="caption" name="caption"></textarea>
+                    </div>
                   </div>
+
                   <div class="mb-3">
                     <label for="imgUpload" class="form-label">Image</label>
                     <input type="file" class="form-control" id="imageUpload" name="file">
@@ -44,16 +60,17 @@
             </div>
 
 
-
-
-
+            
         <h3 class="text-3xl font-bold mx-auto">Post History</h3>
           <ul>
             <% for(var i=0; i<posts.length; i++) {%>
               <li class="overflow-hidden min-w-fit flex">
                 <div class="card card-body lg:card-side bg-base-100 shadow-xl w-1/2 mx-auto my-4">
-                  <img src="<%= posts[i].image%>" class="h-32">
-                  
+                  <!-- Conditionally show image if there is one -->
+                  <!-- if posts[i].image === undefined -->
+                  <% if (posts[i].image !== undefined) { %>
+                    <img src="<%= posts[i].image %>" class="h-32">
+                  <% } %>
                   <div class="card-body">
                     <h2 class="card-title"><%= posts[i].title%></h2>
                     <p><%= posts[i].caption%></p>

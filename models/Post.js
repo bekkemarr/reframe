@@ -5,17 +5,25 @@ const PostSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  negativeTitle: {
+    type: String,
+    required: false,
+  },
   image: {
     type: String,
-    require: true,
+    require: false,
   },
   cloudinaryId: {
     type: String,
-    require: true,
+    require: false,
   },
   caption: {
     type: String,
     required: true,
+  },
+  negativeCaption: {
+    type: String,
+    required: false,
   },
   likes: {
     type: Number,
